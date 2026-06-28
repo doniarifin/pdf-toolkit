@@ -16,7 +16,7 @@ function App() {
         <div className="max-w-5xl mx-auto px-6 py-3 flex items-center gap-3">
           <span className="font-bold text-gray-800 mr-auto">PDF Tools</span>
           <NavLink to="/" end className={navLinkClass}>
-            JPG → PDF
+            JPG to PDF
           </NavLink>
           <NavLink to="/merge" className={navLinkClass}>
             Merge PDF
