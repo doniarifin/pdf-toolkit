@@ -30,8 +30,8 @@ const Home = () => {
   const isDisabled = images.length === 0;
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="mb-6 text-center">
+    <div>
+      <div className="mb-6 text-center pt-6">
         <h1 className="text-3xl font-bold">JPG to PDF</h1>
         <p className="text-gray-500 mt-2">
           Convert JPG images to PDF instantly with adjustable orientation and
