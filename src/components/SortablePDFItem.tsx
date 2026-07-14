@@ -1,7 +1,8 @@
 import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable";
-import { faFilePdf, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PDFThumbnail from "./PDFThumbnail";
 
 interface Props {
   id: string;
@@ -59,11 +60,9 @@ export default function SortablePDFItem({ id, file, index, onDelete }: Props) {
         {...listeners}
         className="cursor-grab active:cursor-grabbing p-4 flex flex-col items-center"
       >
-        <FontAwesomeIcon
-          icon={faFilePdf}
-          size="3x"
-          className="text-red-500 mb-3"
-        />
+        <div className="w-full mb-3 flex items-center justify-center h-44 overflow-hidden rounded-md bg-gray-50">
+          <PDFThumbnail file={file} className="h-44 w-auto object-contain" />
+        </div>
         <p className="text-sm text-gray-700 font-medium truncate max-w-full">
           {file.name}
         </p>
