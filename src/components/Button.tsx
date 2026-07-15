@@ -12,9 +12,9 @@ const baseStyle =
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-blue-600 text-gray-200 hover:bg-blue-700 active:scale-95 shadow-md",
+    "bg-brand-600 text-gray-200 hover:bg-brand-700 active:scale-95 shadow-md",
   secondary:
-    "bg-green-600 text-gray-200 hover:bg-green-700 active:scale-95 shadow-md",
+    "bg-success-600 text-gray-200 hover:bg-success-700 active:scale-95 shadow-md",
   gray: "bg-gray-200 text-gray-800 hover:bg-gray-300 active:scale-95",
   ghost: "bg-transparent text-gray-700 hover:bg-gray-100 active:scale-95",
 };

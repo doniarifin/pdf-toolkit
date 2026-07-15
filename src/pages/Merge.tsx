@@ -3,6 +3,7 @@ import MergeUploadArea from "../components/MergeUploadArea";
 import Button from "../components/Button";
 import PDFMergeList, { type PDFItem } from "../components/PDFMergeList";
 import ScrollArea from "../components/ScrollArea";
+import PrivacyNote from "../components/PrivacyNote";
 import { mergePDFs } from "../features/pdf/mergeService";
 
 const Merge = () => {
@@ -42,7 +43,7 @@ const Merge = () => {
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:h-full">
         {/* Upload + List */}
         <div className="relative md:col-span-2 bg-white p-6 rounded-2xl shadow md:flex md:flex-col md:min-h-0">
-          <h2 className="text-xl font-semibold mb-4">Upload PDFs</h2>
+          <h2 className="text-xl font-semibold mb-4">Merge PDF</h2>
 
           {pdfs.length === 0 && <MergeUploadArea onChange={handleUpload} />}
 
@@ -55,6 +56,8 @@ const Merge = () => {
           <ScrollArea className="md:flex-1 md:min-h-0 mt-4">
             <PDFMergeList items={pdfs} setItems={setPdfs} />
           </ScrollArea>
+
+          <PrivacyNote />
         </div>
 
         {/* RIGHT: Actions */}

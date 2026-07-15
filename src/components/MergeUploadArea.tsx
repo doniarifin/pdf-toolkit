@@ -54,7 +54,7 @@ const MergeUploadArea: React.FC<MergeUploadAreaProps> = ({
   }
 
   return (
-    <label className="w-full h-48 border-2 border-dashed border-gray-300 rounded-2xl flex flex-col items-center justify-center cursor-pointer transition hover:border-blue-500 hover:bg-blue-50">
+    <label className="w-full h-48 border-2 border-dashed border-gray-300 rounded-2xl flex flex-col items-center justify-center cursor-pointer transition hover:border-brand-500 hover:bg-brand-50">
       <div className="text-center">
         <FontAwesomeIcon
           icon={faFilePdf}

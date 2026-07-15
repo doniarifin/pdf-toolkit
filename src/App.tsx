@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Home from "./pages/Home";
 import Merge from "./pages/Merge";
+import PdfToJpg from "./pages/PdfToJpg";
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `px-4 py-2 rounded-lg text-sm font-medium transition ${
@@ -35,6 +36,9 @@ function App() {
             </NavLink>
             <NavLink to="/merge" className={navLinkClass}>
               Merge PDF
+            </NavLink>
+            <NavLink to="/pdf-to-jpg" className={navLinkClass}>
+              PDF to JPG
             </NavLink>
           </div>
 
@@ -68,6 +72,13 @@ function App() {
             >
               Merge PDF
             </NavLink>
+            <NavLink
+              to="/pdf-to-jpg"
+              className={mobileNavLinkClass}
+              onClick={() => setOpen(false)}
+            >
+              PDF to JPG
+            </NavLink>
           </div>
         )}
       </nav>
@@ -75,6 +86,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/merge" element={<Merge />} />
+        <Route path="/pdf-to-jpg" element={<PdfToJpg />} />
       </Routes>
     </div>
   );

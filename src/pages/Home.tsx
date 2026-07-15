@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import { generatePDF } from "../features/pdf/pdfService";
 import PDFPreview from "../components/PDFPreview";
 import ScrollArea from "../components/ScrollArea";
+import PrivacyNote from "../components/PrivacyNote";
 
 type Orientation = "portrait" | "landscape";
 type PageSize = "a4" | "letter" | "legal";
@@ -35,7 +36,7 @@ const Home = () => {
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:h-full">
         {/* Upload + Preview */}
         <div className="relative md:col-span-2 bg-white p-6 rounded-2xl shadow md:flex md:flex-col md:min-h-0">
-          <h2 className="text-xl font-semibold mb-4">Upload Images</h2>
+          <h2 className="text-xl font-semibold mb-4">Images to PDF</h2>
 
           {images.length === 0 && <UploadArea onChange={handleUpload} />}
 
@@ -55,6 +56,8 @@ const Home = () => {
               format={format}
             />
           </ScrollArea>
+
+          <PrivacyNote />
         </div>
 
         {/* RIGHT: Settings */}
@@ -75,7 +78,7 @@ const Home = () => {
                     onClick={() => setOrientation("portrait")}
                     className={`flex-1 p-2 rounded-lg border cursor-pointer ${
                       orientation === "portrait"
-                        ? "bg-blue-600 text-white"
+                        ? "bg-brand-600 text-white"
                         : "bg-gray-100"
                     }`}
                   >
@@ -86,7 +89,7 @@ const Home = () => {
                     onClick={() => setOrientation("landscape")}
                     className={`flex-1 p-2 rounded-lg border cursor-pointer ${
                       orientation === "landscape"
-                        ? "bg-blue-600 text-white"
+                        ? "bg-brand-600 text-white"
                         : "bg-gray-100"
                     }`}
                   >
@@ -105,7 +108,7 @@ const Home = () => {
                       onClick={() => setFormat(size as PageSize)}
                       className={`p-2 rounded-lg border text-sm capitalize cursor-pointer ${
                         format === size
-                          ? "bg-blue-600 text-white"
+                          ? "bg-brand-600 text-white"
                           : "bg-gray-100"
                       }`}
                     >

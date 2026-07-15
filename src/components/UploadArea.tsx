@@ -1,7 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faFileImage } from "@fortawesome/free-solid-svg-icons";
 
 interface UploadAreaProps {
   onChange: (files: File[]) => void;
@@ -56,8 +56,13 @@ const UploadArea: React.FC<UploadAreaProps> = ({ onChange, compact }) => {
   }
 
   return (
-    <label className="w-full h-48 border-2 border-dashed border-gray-300 rounded-2xl flex flex-col items-center justify-center cursor-pointer transition hover:border-blue-500 hover:bg-blue-50">
+    <label className="w-full h-48 border-2 border-dashed border-gray-300 rounded-2xl flex flex-col items-center justify-center cursor-pointer transition hover:border-brand-500 hover:bg-brand-50">
       <div className="text-center">
+        <FontAwesomeIcon
+          icon={faFileImage}
+          size="2x"
+          className="text-brand-500 mb-2"
+        />
         <p className="text-gray-600 font-medium">Click here to upload</p>
         <p className="text-sm text-gray-400 mt-1">Choose JPG/PNG files</p>
       </div>
