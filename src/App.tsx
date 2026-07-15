@@ -1,27 +1,75 @@
+import { useState } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Home from "./pages/Home";
 import Merge from "./pages/Merge";
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `px-4 py-2 rounded-lg text-sm font-medium transition ${
     isActive
-      ? "bg-blue-600 text-white"
+      ? "bg-yellow-400 text-gray-900"
+      : "text-gray-700 hover:bg-gray-100"
+  }`;
+
+const mobileNavLinkClass = ({ isActive }: { isActive: boolean }) =>
+  `block w-full text-center px-4 py-2 rounded-lg text-sm font-medium transition ${
+    isActive
+      ? "bg-yellow-400 text-gray-900"
       : "text-gray-700 hover:bg-gray-100"
   }`;
 
 function App() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen md:h-svh flex flex-col md:overflow-hidden bg-gray-100">
       <nav className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-5xl mx-auto px-6 py-3 flex items-center gap-3">
+        <div className="max-w-5xl mx-auto px-6 md:px-10 py-3 flex items-center gap-3">
           <span className="font-bold text-gray-800 mr-auto">PDF Tools</span>
-          <NavLink to="/" end className={navLinkClass}>
-            JPG to PDF
-          </NavLink>
-          <NavLink to="/merge" className={navLinkClass}>
-            Merge PDF
-          </NavLink>
+
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-3">
+            <NavLink to="/" end className={navLinkClass}>
+              JPG to PDF
+            </NavLink>
+            <NavLink to="/merge" className={navLinkClass}>
+              Merge PDF
+            </NavLink>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 cursor-pointer"
+          >
+            <FontAwesomeIcon icon={open ? faXmark : faBars} />
+          </button>
         </div>
+
+        {/* Mobile expandable menu */}
+        {open && (
+          <div className="md:hidden border-t border-gray-200 px-6 md:px-10 py-3 flex flex-col gap-2">
+            <NavLink
+              to="/"
+              end
+              className={mobileNavLinkClass}
+              onClick={() => setOpen(false)}
+            >
+              JPG to PDF
+            </NavLink>
+            <NavLink
+              to="/merge"
+              className={mobileNavLinkClass}
+              onClick={() => setOpen(false)}
+            >
+              Merge PDF
+            </NavLink>
+          </div>
+        )}
       </nav>
 
       <Routes>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import MergeUploadArea from "../components/MergeUploadArea";
 import Button from "../components/Button";
 import PDFMergeList, { type PDFItem } from "../components/PDFMergeList";
+import ScrollArea from "../components/ScrollArea";
 import { mergePDFs } from "../features/pdf/mergeService";
 
 const Merge = () => {
@@ -37,32 +38,34 @@ const Merge = () => {
   const canMerge = pdfs.length >= 2 && !merging;
 
   return (
-    <div>
-      <div className="mb-6 text-center pt-6">
-        <h1 className="text-3xl font-bold">Merge PDF</h1>
-        <p className="text-gray-500 mt-2">
-          Combine multiple PDFs into one. Drag to reorder.
-        </p>
-      </div>
+    <div className="flex-1 min-h-0 overflow-y-auto md:overflow-hidden px-6 md:px-10 py-6 scroll-area">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:h-full">
+        {/* Upload + List */}
+        <div className="relative md:col-span-2 bg-white p-6 rounded-2xl shadow md:flex md:flex-col md:min-h-0">
+          <h2 className="text-xl font-semibold mb-4">Upload PDFs</h2>
 
-      <div className="p-6">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Upload + List */}
-          <div className="md:col-span-2 bg-white p-6 rounded-2xl shadow">
-            <h2 className="text-xl font-semibold mb-4">Upload PDFs</h2>
-            <MergeUploadArea onChange={handleUpload} />
+          {pdfs.length === 0 && <MergeUploadArea onChange={handleUpload} />}
+
+          {pdfs.length > 0 && (
+            <div className="absolute top-4 right-4 z-10">
+              <MergeUploadArea onChange={handleUpload} compact />
+            </div>
+          )}
+
+          <ScrollArea className="md:flex-1 md:min-h-0 mt-4">
             <PDFMergeList items={pdfs} setItems={setPdfs} />
-          </div>
+          </ScrollArea>
+        </div>
 
-          {/* RIGHT: Actions */}
-          <div className="relative">
-            <div
-              className={`
-                bg-white p-6 rounded-2xl shadow transition
-                ${isEmpty ? "opacity-50 pointer-events-none" : ""}
-              `}
-            >
-              <h2 className="text-xl font-semibold mb-4">Merge</h2>
+        {/* RIGHT: Actions */}
+        <div className="relative">
+          <div
+            className={`
+              bg-white p-6 rounded-2xl shadow transition
+              ${isEmpty ? "opacity-50 pointer-events-none" : ""}
+            `}
+          >
+            <h2 className="text-xl font-semibold mb-4">Merge</h2>
 
               <p className="text-sm text-gray-600 mb-4">
                 Files will be combined in the order shown on the left. Drag
@@ -100,7 +103,6 @@ const Merge = () => {
             )}
           </div>
         </div>
-      </div>
     </div>
   );
 };

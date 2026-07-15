@@ -3,6 +3,7 @@ import UploadArea from "../components/UploadArea";
 import Button from "../components/Button";
 import { generatePDF } from "../features/pdf/pdfService";
 import PDFPreview from "../components/PDFPreview";
+import ScrollArea from "../components/ScrollArea";
 
 type Orientation = "portrait" | "landscape";
 type PageSize = "a4" | "letter" | "legal";
@@ -30,24 +31,22 @@ const Home = () => {
   const isDisabled = images.length === 0;
 
   return (
-    <div>
-      <div className="mb-6 text-center pt-6">
-        <h1 className="text-3xl font-bold">JPG to PDF</h1>
-        <p className="text-gray-500 mt-2">
-          Convert JPG images to PDF instantly with adjustable orientation and
-          margins.
-        </p>
-      </div>
+    <div className="flex-1 min-h-0 overflow-y-auto md:overflow-hidden px-6 md:px-10 py-6 scroll-area">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:h-full">
+        {/* Upload + Preview */}
+        <div className="relative md:col-span-2 bg-white p-6 rounded-2xl shadow md:flex md:flex-col md:min-h-0">
+          <h2 className="text-xl font-semibold mb-4">Upload Images</h2>
 
-      <div className="p-6">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Upload + Preview */}
-          <div className="md:col-span-2 bg-white p-6 rounded-2xl shadow">
-            <h2 className="text-xl font-semibold mb-4">Upload Images</h2>
+          {images.length === 0 && <UploadArea onChange={handleUpload} />}
 
-            <UploadArea onChange={handleUpload} />
+          {images.length > 0 && (
+            <div className="absolute top-4 right-4 z-10">
+              <UploadArea onChange={handleUpload} compact />
+            </div>
+          )}
 
-            {/* Preview */}
+          {/* Preview (scrolls when many images) */}
+          <ScrollArea className="md:flex-1 md:min-h-0 mt-4">
             <PDFPreview
               images={images}
               setImages={setImages}
@@ -55,17 +54,18 @@ const Home = () => {
               margin={margin}
               format={format}
             />
-          </div>
+          </ScrollArea>
+        </div>
 
-          {/* RIGHT: Settings */}
-          <div className="relative">
-            <div
-              className={`
+        {/* RIGHT: Settings */}
+        <div className="relative">
+          <div
+            className={`
             bg-white p-6 rounded-2xl shadow transition
             ${isDisabled ? "opacity-50 pointer-events-none" : ""}
           `}
-            >
-              <h2 className="text-xl font-semibold mb-4">Settings</h2>
+          >
+            <h2 className="text-xl font-semibold mb-4">Settings</h2>
 
               {/* Orientation */}
               <div className="mb-4">
@@ -152,7 +152,6 @@ const Home = () => {
             )}
           </div>
         </div>
-      </div>
     </div>
   );
 };

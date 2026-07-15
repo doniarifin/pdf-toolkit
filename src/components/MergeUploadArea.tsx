@@ -1,12 +1,16 @@
 import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { faFilePdf, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 interface MergeUploadAreaProps {
   onChange: (files: File[]) => void;
+  compact?: boolean;
 }
 
-const MergeUploadArea: React.FC<MergeUploadAreaProps> = ({ onChange }) => {
+const MergeUploadArea: React.FC<MergeUploadAreaProps> = ({
+  onChange,
+  compact,
+}) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,6 +19,39 @@ const MergeUploadArea: React.FC<MergeUploadAreaProps> = ({ onChange }) => {
     e.target.value = "";
     if (inputRef.current) inputRef.current.value = "";
   };
+
+  const openDialog = () => inputRef.current?.click();
+
+  const fileInput = (
+    <input
+      ref={inputRef}
+      type="file"
+      multiple
+      accept="application/pdf"
+      className="hidden"
+      onChange={handleFile}
+    />
+  );
+
+  if (compact) {
+    return (
+      <>
+        <button
+          type="button"
+          onClick={openDialog}
+          aria-label="Add more PDFs"
+          className="
+            w-10 h-10 rounded-full bg-yellow-400 hover:bg-yellow-500
+            text-white shadow-md flex items-center justify-center
+            cursor-pointer transition active:scale-95
+          "
+        >
+          <FontAwesomeIcon icon={faPlus} />
+        </button>
+        {fileInput}
+      </>
+    );
+  }
 
   return (
     <label className="w-full h-48 border-2 border-dashed border-gray-300 rounded-2xl flex flex-col items-center justify-center cursor-pointer transition hover:border-blue-500 hover:bg-blue-50">
@@ -28,14 +65,7 @@ const MergeUploadArea: React.FC<MergeUploadAreaProps> = ({ onChange }) => {
         <p className="text-sm text-gray-400 mt-1">Choose PDF files to merge</p>
       </div>
 
-      <input
-        ref={inputRef}
-        type="file"
-        multiple
-        accept="application/pdf"
-        className="hidden"
-        onChange={handleFile}
-      />
+      {fileInput}
     </label>
   );
 };

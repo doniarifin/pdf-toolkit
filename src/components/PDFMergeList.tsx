@@ -38,7 +38,7 @@ const PDFMergeList: React.FC<Props> = ({ items, setItems }) => {
         items={items.map((i) => i.id)}
         strategy={rectSortingStrategy}
       >
-        <div className="bg-gray-200 p-6 rounded-xl mt-6 flex flex-wrap gap-6 justify-center">
+        <div className="bg-gray-200 p-4 rounded-xl mt-4 flex flex-wrap gap-3 justify-center">
           {items.map((item, index) => (
             <SortablePDFItem
               key={item.id}

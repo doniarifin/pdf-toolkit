@@ -34,7 +34,7 @@ const PDFPreview: React.FC<Props> = ({
     legal: { w: 216, h: 356 },
   };
 
-  const scale = 1.2;
+  const scale = 0.8;
 
   const base = sizes[format];
 
@@ -71,7 +71,7 @@ const PDFPreview: React.FC<Props> = ({
             items={images.map((i) => i.id)}
             strategy={rectSortingStrategy}
           >
-            <div className="bg-gray-200 p-6 rounded-xl mt-6 flex flex-wrap gap-6 justify-center">
+            <div className="bg-gray-200 p-4 rounded-xl mt-0 flex flex-wrap gap-3 justify-center">
               {images.map((item, index) => (
                 <div key={item.id} className="flex flex-col items-center">
                   <div style={{ width, height }}>

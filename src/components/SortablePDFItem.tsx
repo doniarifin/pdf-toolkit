@@ -24,7 +24,7 @@ export default function SortablePDFItem({ id, file, index, onDelete }: Props) {
     <div
       ref={setNodeRef}
       style={style}
-      className="bg-white shadow-lg rounded-xl relative group w-56"
+      className="bg-white shadow-lg rounded-xl relative group w-40"
     >
       {/* Delete Button */}
       <button
@@ -60,8 +60,8 @@ export default function SortablePDFItem({ id, file, index, onDelete }: Props) {
         {...listeners}
         className="cursor-grab active:cursor-grabbing p-4 flex flex-col items-center"
       >
-        <div className="w-full mb-3 flex items-center justify-center h-44 overflow-hidden rounded-md bg-gray-50">
-          <PDFThumbnail file={file} className="h-44 w-auto object-contain" />
+        <div className="w-full mb-3 flex items-center justify-center h-32 overflow-hidden rounded-md bg-gray-50">
+          <PDFThumbnail file={file} className="h-32 w-auto object-contain" />
         </div>
         <p className="text-sm text-gray-700 font-medium truncate max-w-full">
           {file.name}
