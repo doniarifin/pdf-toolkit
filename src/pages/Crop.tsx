@@ -120,6 +120,7 @@ const Crop = () => {
             </div>
           )}
 
+          <div className="md:flex-1 md:min-h-0 mt-4 flex flex-col min-h-0">
           {file && (
             <>
               {/* Page navigation */}
@@ -180,6 +181,7 @@ const Crop = () => {
               </div>
             </>
           )}
+          </div>
 
           <PrivacyNote />
         </div>
