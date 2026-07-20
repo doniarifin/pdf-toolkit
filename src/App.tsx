@@ -5,6 +5,7 @@ import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Home from "./pages/Home";
 import Merge from "./pages/Merge";
 import PdfToJpg from "./pages/PdfToJpg";
+import Crop from "./pages/Crop";
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `px-4 py-2 rounded-lg text-sm font-medium transition ${
@@ -39,6 +40,9 @@ function App() {
             </NavLink>
             <NavLink to="/pdf-to-jpg" className={navLinkClass}>
               PDF to JPG
+            </NavLink>
+            <NavLink to="/crop" className={navLinkClass}>
+              Crop PDF
             </NavLink>
           </div>
 
@@ -79,6 +83,13 @@ function App() {
             >
               PDF to JPG
             </NavLink>
+            <NavLink
+              to="/crop"
+              className={mobileNavLinkClass}
+              onClick={() => setOpen(false)}
+            >
+              Crop PDF
+            </NavLink>
           </div>
         )}
       </nav>
@@ -87,6 +98,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/merge" element={<Merge />} />
         <Route path="/pdf-to-jpg" element={<PdfToJpg />} />
+        <Route path="/crop" element={<Crop />} />
       </Routes>
     </div>
   );
