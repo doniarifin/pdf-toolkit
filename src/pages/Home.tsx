@@ -5,6 +5,7 @@ import { generatePDF } from "../features/pdf/pdfService";
 import PDFPreview from "../components/PDFPreview";
 import ScrollArea from "../components/ScrollArea";
 import PrivacyNote from "../components/PrivacyNote";
+import SidePanel from "../components/SidePanel";
 
 type Orientation = "portrait" | "landscape";
 type PageSize = "a4" | "letter" | "legal";
@@ -61,13 +62,7 @@ const Home = () => {
         </div>
 
         {/* RIGHT: Settings */}
-        <div className="relative">
-          <div
-            className={`
-            bg-white p-6 rounded-2xl shadow transition
-            ${isDisabled ? "opacity-50 pointer-events-none" : ""}
-          `}
-          >
+        <SidePanel disabled={isDisabled} overlayText="Please choose file first">
             <h2 className="text-xl font-semibold mb-4">Settings</h2>
 
               {/* Orientation */}
@@ -144,17 +139,8 @@ const Home = () => {
               >
                 Convert to PDF
               </Button>
-            </div>
-            {/* overlay */}
-            {isDisabled && (
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] flex items-center justify-center rounded-2xl">
-                <p className="text-sm text-gray-600 font-medium">
-                  Please choose file first
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
+        </SidePanel>
+      </div>
     </div>
   );
 };

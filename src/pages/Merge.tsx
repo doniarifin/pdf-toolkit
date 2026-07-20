@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import PDFMergeList, { type PDFItem } from "../components/PDFMergeList";
 import ScrollArea from "../components/ScrollArea";
 import PrivacyNote from "../components/PrivacyNote";
+import SidePanel from "../components/SidePanel";
 import { mergePDFs } from "../features/pdf/mergeService";
 
 const Merge = () => {
@@ -61,13 +62,7 @@ const Merge = () => {
         </div>
 
         {/* RIGHT: Actions */}
-        <div className="relative">
-          <div
-            className={`
-              bg-white p-6 rounded-2xl shadow transition
-              ${isEmpty ? "opacity-50 pointer-events-none" : ""}
-            `}
-          >
+        <SidePanel disabled={isEmpty} overlayText="Please choose files first">
             <h2 className="text-xl font-semibold mb-4">Merge</h2>
 
               <p className="text-sm text-gray-600 mb-4">
@@ -94,18 +89,8 @@ const Merge = () => {
               >
                 Merge &amp; Download
               </Button>
-            </div>
-
-            {/* overlay */}
-            {isEmpty && (
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] flex items-center justify-center rounded-2xl">
-                <p className="text-sm text-gray-600 font-medium">
-                  Please choose files first
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
+        </SidePanel>
+      </div>
     </div>
   );
 };

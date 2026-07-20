@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import PDFThumbnail from "../components/PDFThumbnail";
 import ScrollArea from "../components/ScrollArea";
 import PrivacyNote from "../components/PrivacyNote";
+import SidePanel from "../components/SidePanel";
 import {
   convertPdfToJpg,
   type ImageQuality,
@@ -133,13 +134,7 @@ const PdfToJpg = () => {
         </div>
 
         {/* RIGHT: Settings */}
-        <div className="relative">
-          <div
-            className={`
-              bg-white p-6 rounded-2xl shadow transition
-              ${isDisabled ? "opacity-50 pointer-events-none" : ""}
-            `}
-          >
+        <SidePanel disabled={isDisabled} overlayText="Please choose a file first">
             <h2 className="text-xl font-semibold mb-4">Settings</h2>
 
             {/* Quality */}
@@ -195,17 +190,7 @@ const PdfToJpg = () => {
             >
               Convert to JPG
             </Button>
-          </div>
-
-          {/* overlay */}
-          {isDisabled && (
-            <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] flex items-center justify-center rounded-2xl">
-              <p className="text-sm text-gray-600 font-medium">
-                Please choose a file first
-              </p>
-            </div>
-          )}
-        </div>
+        </SidePanel>
       </div>
     </div>
   );
