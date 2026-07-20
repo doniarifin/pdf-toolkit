@@ -33,10 +33,25 @@ A fast, privacy-friendly web app for everyday PDF tasks — built with React, Ty
 - Vite
 - Tailwind CSS v4
 - jsPDF — image → PDF generation
-- pdf-lib — merging existing PDFs
+- pdf-lib — merging & cropping existing PDFs
+- pdfjs-dist — rendering PDF pages for the preview/thumbnail UI
 - @dnd-kit — drag-and-drop reordering
 - react-router-dom — client-side routing
 - FontAwesome — icons
+
+---
+
+## Libraries per Feature
+
+A quick map of which npm packages power each tool:
+
+| Feature | Library | What it does |
+| --- | --- | --- |
+| JPG / PNG to PDF | [jsPDF](https://github.com/parallax/jsPDF) | Places each image onto a PDF page (with the chosen orientation, size, and margin) and exports the file. |
+| Merge PDF | [pdf-lib](https://pdf-lib.js.org/) | Loads each PDF and copies its pages, in the chosen order, into a new document. |
+| Crop PDF | [pdf-lib](https://pdf-lib.js.org/) | Shrinks each page by rewriting its `MediaBox`/`CropBox` to the selected region, then saves the file. |
+| PDF Preview/Thumbnails | [pdfjs-dist](https://mozilla.github.io/pdf.js/) | Renders page previews and thumbnails in the browser so the crop area can be selected visually. |
+| PDF to JPG | [pdfjs-dist](https://mozilla.github.io/pdf.js/) + [jszip](https://stuk.github.io/jszip/) | Renders each page to a JPG image via canvas; when more than one page is converted, JSZip bundles them into a downloadable `.zip`. |
 
 ---
 
